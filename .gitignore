@@ -17,5 +17,6 @@ Thumbs.db
 *.log
 *.tmp
 
+*.github/*
 
 /pizarra/db.sqlite3
