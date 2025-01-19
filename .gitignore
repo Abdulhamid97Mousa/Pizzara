@@ -16,3 +16,6 @@ Thumbs.db
 # Ignore other non-project files
 *.log
 *.tmp
+
+
+/pizarra/db.sqlite3
