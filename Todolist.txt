@@ -1,0 +1,22 @@
+Todos
+    -   Done Create base template
+    -   Done Create front page template
+    -   Done Create about page template
+    -   Done Create Sign up/ Log in template 
+    -   Done Basic list page for projects, todolists, etc.
+    -   Done detail page for projects, todolists, etc.
+    -   Done Basic detail page for projects, todolists, etc.
+    
+    -   Done setup the dev environment
+    -   Done Create empty project
+    -   Done Create core app and front page 
+    -   Done Create about page 
+
+    -   Done Custom User model
+    -   Done Sign up
+    -   Dome Log in
+
+    -   Done project list page
+    -   Done Create project 
+    -   Project details page
+
