@@ -27,10 +27,14 @@ Todos
     -   Done Edit todo list
     -   Done Delete todolist
 
-    -   Create Tasks
-    -   Task detail page
-    -   edit Tasks
-    -   Delete tasks 
+    -   DONE Create Tasks
+    -   DONE  Task detail page
+    -   DONE edit Tasks
+    -   DONE Delete tasks
+
+    -   DONE File uploads for projects
+    -   Done list on project page
+    -   Delete project files  
 
 
 

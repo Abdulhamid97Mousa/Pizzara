@@ -20,3 +20,10 @@ Thumbs.db
 *.github/*
 
 /pizarra/db.sqlite3
+
+/pizarra/media/*
+
+/pizarra/static/*
+
+
+pizarra/project/migrations/*

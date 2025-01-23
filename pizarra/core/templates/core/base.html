@@ -1,11 +1,17 @@
 <!doctype html>
-<html>
+<html class="h-full">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Add this custom CSS */
+    html, body {
+      height: 100;
+    }
+  </style>
 </head>
-<body>
+<body class="h-full flex flex-col" >
     <nav class="py-6 px-8 flex items-center justify-between bg-slate-800">
         <h1 class="text-xl text-white" >
             <a href="{% url 'core:index' %}">Pizarra</a>
@@ -24,11 +30,11 @@
 
         </div>
     </nav>
-    <main class="py-6 px-8">
+    <main class="flex-1 py-6 px-8">
         {% block content %}
         {% endblock %}
     </main>
-    <footer class="py-8 px-8 bg-slate-900 text-white text-center">
+    <footer class="py-8 px-8 bg-slate-900 text-white  mt-auto text-center">
         <p class= "text-white">
             Copyright (c) 2023 - Code With Hamid
         </p>
