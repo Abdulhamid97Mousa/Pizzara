@@ -58,3 +58,7 @@ def delete(request, pk):
     project = Project.objects.filter(created_by=request.user).get(pk=pk)
     project.delete()
     return redirect('/projects/')
+
+@login_required
+def back(request, pk):
+    return redirect('/projects/')  

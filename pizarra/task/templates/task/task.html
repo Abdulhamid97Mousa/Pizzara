@@ -1,0 +1,27 @@
+{% extends 'core/base.html'%}
+
+{% block content %}
+
+<h1 class="mb-6 text-3xl">{{ task.name }}</h1>
+
+<p><strong class="font-bold">Status:</strong> {% if task.is_done %}Done{% else %} Todo {% endif %}</p>
+
+{% if task.description %}
+<p class="mb-6">{{ task.description }}</p>
+{% endif %}
+
+<a
+  href="?toggle_done=true"
+  class="py-4 px-8 {% if task.is_done %}bg-slate-600{% else %}bg-emerald-600{% endif %} text-white inline-block"
+>
+  {% if task.is_done %}
+    Mark as not done
+  {% else %}
+    Mark as done
+  {% endif %}
+</a>
+<a href="{% url 'task:edit' task.project_id task.todolist_id  task.id %}" class="py-4 px-8 bg-sky-600 text-white inline-block">Edit</a>
+<a href="{% url 'task:delete' task.project_id task.todolist_id task.id %}" class="py-4 px-8 bg-amber-600 text-white inline-block">Delete</a>
+<a href="#" class="py-4 px-8 bg-slate-600 text-white inline-block">Back</a>
+
+{% endblock %}
