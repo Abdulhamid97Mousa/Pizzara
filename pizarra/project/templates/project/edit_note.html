@@ -1,0 +1,26 @@
+{% extends 'core/base.html'%}
+
+{% load static %} 
+
+{% block content %}
+<h1 class="mb-6 text-3xl">Edit note</h1>
+<form class="mt-6 space-y-4" method="post" action=".">
+    {% csrf_token %}
+    <div>
+        <label class="text-black">Name</label>
+        <br>
+        <input name="name" value="{{ note.name }}" type="text" class="form-input">
+        <br>
+    </div>
+
+    <div>
+        <label  class="text-black">Body</label>
+        <br>
+        <textarea name="description" class="form-textarea" rows="10">{{ note.body }}</textarea>
+    </div>
+
+    <div>
+        <button class="btn-submit">Save changes</button>
+    </div>
+</form>
+{% endblock %}

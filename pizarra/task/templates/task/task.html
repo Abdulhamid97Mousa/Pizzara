@@ -12,7 +12,7 @@
 
 <a
   href="?toggle_done=true"
-  class="py-4 px-8 {% if task.is_done %}bg-slate-600{% else %}bg-emerald-600{% endif %} text-white inline-block"
+  class="py-4 px-8 {% if task.is_done %}btn-back{% else %}btn-add{% endif %} text-white inline-block"
 >
   {% if task.is_done %}
     Mark as not done
@@ -20,8 +20,8 @@
     Mark as done
   {% endif %}
 </a>
-<a href="{% url 'task:edit' task.project_id task.todolist_id  task.id %}" class="py-4 px-8 bg-sky-600 text-white inline-block">Edit</a>
-<a href="{% url 'task:delete' task.project_id task.todolist_id task.id %}" class="py-4 px-8 bg-amber-600 text-white inline-block">Delete</a>
-<a href="#" class="py-4 px-8 bg-slate-600 text-white inline-block">Back</a>
+<a href="{% url 'task:edit' task.project_id task.todolist_id  task.id %}" class="btn-edit">Edit</a>
+<a href="{% url 'task:delete' task.project_id task.todolist_id task.id %}" class="btn-delete">Delete</a>
+<a href="{% url 'task:back'  task.project_id task.todolist_id task.id %}" class="btn-back">Back</a>
 
 {% endblock %}

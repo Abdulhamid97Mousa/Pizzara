@@ -1,5 +1,7 @@
 {% extends 'core/base.html'%}
 
+{% load static %}
+
 {% block content %}
 <h1 class="mb-6 text-3xl">{{ project.name }}</h1>
 
@@ -7,32 +9,35 @@
 <p class="mb-6">{{ project.description }}</p>
 {% endif %}
 
-<a href="{% url 'todolist:add' project.id %}" class="py-4 px-8 bg-emerald-600 text-white inline-block">Add todolist</a>
+<a href="{% url 'project:edit' project.id %}" class="btn-edit">Edit</a>
+<a href="{% url 'project:delete' project.id %}" class="btn-delete">Delete</a>
 
+<a href="{% url 'project:back' project.id%}" class="btn-back">Back</a>
 
-<a href="{% url 'project:upload_file' project.id %}" class="py-4 px-8 bg-slate-600 text-white inline-block">Upload file </a>
+<h3 class="mt-6 text-xl mb-4">Todo lists</h3>
 
-<a href="{% url 'project:edit' project.id %}" class="py-4 px-8 bg-sky-600 text-white inline-block">Edit</a>
-<a href="{% url 'project:delete' project.id %}" class="py-4 px-8 bg-amber-600 text-white inline-block">Delete</a>
-
-<a href="{% url 'project:back' project.id%}" class="py-4 px-8 bg-slate-600 text-white inline-block">Back</a>
-
-<h3 class="mt-6 text-2xl">Todo lists</h3>
+<a href="{% url 'todolist:add' project.id %}" class="btn-add">Add todolist</a>
 
 <div class="mt-6 grid grid-cols-4 gap-4">
     {% for todolist in project.todolists.all %}
     <div class="py-6 px-6 bg-slate-200">
         <a href="{% url 'todolist:todolist' project.id todolist.id %}">
-            <h3 class="mb-4 text-xl">{{ todolist.name }}</h2>
+            <h3 class="mb-4 text-xl">{{ todolist.name }}</h3>
             <p class="text-sm text-slate-600">
                 {{ todolist.description }}
             </p>
         </a> 
     </div>
+    {% empty %}
+    <div class="p-3 text-gray-500 bg-slate-200 text-sm">
+        No notes created yet
+    </div>
     {% endfor %}
 </div>
 
 <h3 class="mt-6 text-xl font-medium mb-4">Files</h3>
+
+<a href="{% url 'project:upload_file' project.id %}" class="btn-add">Upload file </a>
 
 <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
     {% for projectfile in project.files.all %}
@@ -64,6 +69,27 @@
     {% empty %}
         <div class="p-3 text-gray-500 bg-slate-200 text-sm">
             No files uploaded yet
+        </div>
+    {% endfor %}
+</div>
+
+<h3 class="mt-6 text-xl font-medium mb-4">Notes</h3>
+
+<a href="{% url 'project:add_note' project.id %}" class="btn-add">Add Notes </a>
+
+<div class="mt-6 grid grid-cols-4 gap-4">
+    {% for note in project.notes.all %}
+    <div class="py-6 px-6 bg-slate-200">
+        <a href="{% url 'project:note_detail' project.id note.id %}">
+            <h3 class="mb-4 text-xl">{{ note.name }}</h3>
+            <p class="text-sm text-slate-600">
+                {{ note.body|truncatechars:50 }}
+            </p>
+        </a> 
+    </div>
+    {% empty %}
+        <div class="p-3 text-gray-500 bg-slate-200 text-sm">
+            No notes created yet
         </div>
     {% endfor %}
 </div>

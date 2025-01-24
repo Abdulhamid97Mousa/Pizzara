@@ -34,7 +34,8 @@ Todos
 
     -   DONE File uploads for projects
     -   Done list on project page
-    -   Delete project files  
+    -   Done Delete project files  
+    -   Done add a back botton
 
 
 

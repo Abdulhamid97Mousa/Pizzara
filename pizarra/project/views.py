@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Project
+from .models import Project, ProjectNote
 from django.contrib.auth.decorators import login_required
 from .forms import ProjectFileForm
 
-
+## Projects
 
 @login_required
 def projects(request):
@@ -31,9 +31,11 @@ def add(request):
 @login_required
 def project(request, pk):
     project = Project.objects.filter(created_by=request.user).get(pk=pk)
+    notes = project.notes.all()  # Add this line to fetch notes
     
     return render(request, 'project/project.html', {
-        'project': project
+        'project': project,
+        'notes': notes
     })
     
 
@@ -67,9 +69,11 @@ def back(request, pk):
     return redirect('/projects/')  
 
 
+## Files
+
 @login_required
-def upload_file(request, pk):
-    project = Project.objects.filter(created_by=request.user).get(pk=pk)
+def upload_file(request, project_id):
+    project = Project.objects.filter(created_by=request.user).get(pk=project_id)
     
     if request.method == 'POST':
         form = ProjectFileForm(request.POST, request.FILES)
@@ -78,7 +82,7 @@ def upload_file(request, pk):
             projectfile.project = project
             projectfile.save()
             
-            return redirect('project:project', pk=pk)
+            return redirect('project:project', pk=project_id)
         else:
             print("Form errors:", form.errors)
     else: 
@@ -96,4 +100,74 @@ def delete_file(request, project_id, pk):
     print(project.files.all())
     projectfile = project.files.get(pk=pk)
     projectfile.delete()
+    return redirect(f'/projects/{project_id}/')
+
+
+## Notes
+
+@login_required
+def note_detail(request, project_id, pk):
+    project = Project.objects.filter(created_by=request.user).get(pk=project_id)
+    note = project.notes.get(pk=pk)
+    
+    return render(request, 'project/note_detail.html', {
+        'project': project,
+        'note': note
+    })
+    
+
+@login_required
+def add_note(request, project_id):
+    project = Project.objects.filter(created_by=request.user).get(pk=project_id)
+    
+    if request.method == 'POST':
+        name = request.POST.get('name', '')
+        body = request.POST.get('body', '')
+        
+        if name and body:
+            ProjectNote.objects.create(
+                name=name, body=body,
+                project=project
+            )
+            return redirect(f'/projects/{project_id}/')
+        else:
+            print("Not valid")
+    
+    
+    return render(request, 'project/add_note.html', {
+        'project': project
+    })
+
+
+@login_required
+def edit_note(request, project_id, pk):
+    project = Project.objects.filter(created_by=request.user).get(pk=project_id)
+    note = project.notes.get(pk=pk)
+    
+    if request.method == 'POST':
+        name = request.POST.get('name', '')
+        body = request.POST.get('body', '')
+        
+        if name and body:
+            note.name = name
+            note.body = body
+            note.save()
+            return redirect(f'/projects/{project_id}/')
+        else:
+            print("Not valid")
+    
+    return render(request, 'project/edit_note.html', {
+        'project': project,
+        'note': note
+    })
+    
+@login_required
+def delete_note(request, project_id, pk):
+    project = Project.objects.filter(created_by=request.user).get(pk=project_id)
+    note = project.notes.get(pk=pk)
+    note.delete()
+    return redirect(f'/projects/{project_id}/')
+
+@login_required
+def back_note(request, project_id):
     return redirect(f'/projects/{project_id}/')

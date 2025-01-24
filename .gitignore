@@ -1,6 +1,36 @@
 # Ignore Python virtual environment
-env/
+# Python
+env/               
 venv/
+__pycache__/       
+*.pyc
+*.pyo
+*.pyd
+
+# Django
+# Local SQLite database (correct path based on your ls -la)
+/pizarra/db.sqlite3
+
+# Uploaded media files (correct path, not /pizarra/media)
+media/             
+/pizarra/media/*
+
+# Django migrations (safer to ignore all except __init__.py)
+migrations/        
+*/migrations/__init__.py
+# Ignore Django migrations
+*/migrations/*
+
+
+# Frontend/Node.js
+                   
+/pizarra/.cache/                          
+/pizarra/dist/                            
+/pizarra/static/css/output.css            
+/pizarra/package-lock.json                
+                      
+
+
 
 # Ignore Python bytecode files
 __pycache__/
@@ -19,11 +49,11 @@ Thumbs.db
 
 *.github/*
 
-/pizarra/db.sqlite3
-
 /pizarra/media/*
+/pizarra/static/CACHE
+/pizarra/static/css
 
-/pizarra/static/*
 
+node_modules/
 
-pizarra/project/migrations/*
+Todolist.txt

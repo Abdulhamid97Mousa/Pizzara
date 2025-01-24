@@ -1,0 +1,149 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities'; 
+
+/* Form Container (Replicates Tailwind's space-y-6, shadow, etc.) */
+.form-container {
+    background: white;
+    padding: 2rem;
+    /* p-8 */
+    border-radius: 0.5rem;
+    /* rounded-lg */
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    /* shadow-sm */
+    border: 1px solid #f3f4f6;
+    /* border-gray-100 */
+}
+
+/* Spacing between form elements (Tailwind's space-y-6) */
+.form-container>*+* {
+    margin-top: 1.5rem;
+    /* 6 = 1.5rem */
+}
+
+/* Labels (Tailwind's text-sm, font-medium, text-gray-700) */
+.form-label {
+  font-size: 1rem;
+  /* text-base */
+  font-weight: 500;
+  /* font-medium */
+  color: #374151;
+  /* text-gray-700 */
+  margin-bottom: 10px;
+}
+
+/* Inputs & Textareas (Tailwind's border, focus rings, etc.) */
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    /* px-4 py-3 */
+    border: 2px solid #d1d5db;
+    /* border-gray-300 */
+    border-radius: 0.5rem;
+    /* rounded-lg */
+    transition: all 0.15s ease-in-out;
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    /* px-4 py-3 */
+    border: 2px solid #d1d5db;
+    /* border-gray-300 */
+    border-radius: 0.5rem;
+    /* rounded-lg */
+    transition: all 0.15s ease-in-out;
+    min-height: 100px;
+
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: 2px solid transparent;
+    border-color: #0ea5e9;
+    /* focus:border-sky-500 */
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+    /* focus:ring-2 focus:ring-sky-500 */
+}
+
+/* Buttons - Extended System */
+.btn-add,
+.btn-edit,
+.btn-delete,
+.btn-back,
+.btn-submit,
+.btn-cancel,
+.btn-login,
+.btn-signup,
+.btn-logout {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  color: white;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  text-align: center;
+  font-weight: 500;
+  border: 2px solid transparent;
+}
+
+/* Add Button (Emerald) */
+.btn-add { background: #065f46; border-color: #047857; }
+.btn-add:hover { background: #064e3b; }
+
+/* Edit Button (Amber) */
+.btn-edit { background: #b45309; border-color: #d97706; }
+.btn-edit:hover { background: #92400e; }
+
+/* Delete Button (Dark Red) */
+.btn-delete { background: #7f1d1d; border-color: #991b1b; }
+.btn-delete:hover { background: #63171b; }
+
+/* Back Button (Slate) */
+.btn-back { background: #475569; border-color: #64748b; }
+.btn-back:hover { background: #334155; }
+
+/* ----- New Buttons ----- */
+/* Submit (Sky Blue) */
+.btn-submit {
+  background: #0284c7;  /* bg-sky-600 */
+  border-color: #0369a1;  /* border-sky-700 */
+}
+.btn-submit:hover {
+  background: #0369a1;  /* hover:bg-sky-700 */
+}
+
+/* Cancel (Gray) */
+.btn-cancel {
+  background: #6b7280;  /* bg-gray-500 */
+  border-color: #4b5563;  /* border-gray-600 */
+}
+.btn-cancel:hover {
+  background: #4b5563;  /* hover:bg-gray-600 */
+}
+
+/* Log In (Emerald) */
+.btn-login {
+  background: #6b7280;  /* bg-emerald-600 */
+  border-color: #4b5563;  /* border-emerald-700 */
+}
+.btn-login:hover {
+  background: #4b5563;  /* hover:bg-emerald-700 */
+}
+
+/* Sign Up (Violet) */
+.btn-signup {
+  background: #0284c7;  /* bg-violet-600 */
+  border-color: #0369a1;  /* border-violet-700 */
+}
+.btn-signup:hover {
+  background: #0369a1;  /* hover:bg-violet-700 */
+}
+
+/* Log Out (Red) */
+.btn-logout {
+  background: #dc2626;  /* bg-red-600 */
+  border-color: #b91c1c;  /* border-red-700 */
+}
+.btn-logout:hover {
+  background: #b91c1c;  /* hover:bg-red-700 */
+}

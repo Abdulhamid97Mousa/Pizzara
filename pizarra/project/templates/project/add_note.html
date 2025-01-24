@@ -1,0 +1,47 @@
+{% extends 'core/base.html'%} {% load static %} {% block content %}
+
+<h1 class="mb-8 text-3xl font-bold text-gray-800">
+  Add note to <span class="text-blue-600 italic">"{{project.name}}"</span>
+</h1>
+
+<form
+  class="form-container"
+  method="post"
+  action="{% url 'project:add_note' project.id %}"
+>
+  {% csrf_token %}
+
+  <!-- Name Field -->
+  <div>
+    <label class="form-label">Note Title</label>
+    <input
+      name="name"
+      type="text"
+      class="form-input"
+      placeholder="Enter note title"
+      required
+    />
+  </div>
+
+  <!-- Body Field -->
+  <div>
+    <label class="form-label">Note Content</label>
+    <textarea
+      name="body"
+      class="form-textarea"
+      rows="10"
+      placeholder="Write your notes here..."
+      required
+    ></textarea>
+  </div>
+
+  <!-- Form Actions -->
+  <div class="flex items-center justify-end gap-4 pt-6">
+    <a href="{% url 'project:project' project.id %}" class="btn-cancel">
+      Cancel
+    </a>
+    <button type="submit" class="btn-submit">Save changes</button>
+  </div>
+</form>
+
+{% endblock %}

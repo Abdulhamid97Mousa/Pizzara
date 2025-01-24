@@ -28,18 +28,15 @@ def add(request, project_id, todolist_id):
         name = request.POST.get('name', '')
         description = request.POST.get('description', '')
         
-        
-        task = Task.objects.create(
-                name=name, description=description,
-                todolist=todolist, project=project, created_by=request.user
-            )
-        print("Task created", task)
-        print("Task created", task.project)
-        print("Task created", task.todolist)
-        print("Task created", task.created_by)
-        return redirect(f'/projects/{project_id}/{todolist_id}/')
+        if name and description:
+            Task.objects.create(name=name, description=description, project=project, todolist=todolist, created_by=request.user)
+            
+            return redirect(f'/projects/{project_id}/{todolist_id}/')
     
-    return render(request, 'task/add.html')
+    return render(request, 'task/add.html', {
+        'project': project,
+        'todolist': todolist
+    })
 
 
 @login_required

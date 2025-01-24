@@ -1,28 +1,29 @@
 {% extends 'core/base.html' %}
 
+{% load static %}
 
 {% block content %}
-<div class="max-w-xl mx-auto py-8 bg-slate-800 text-center">
-    <h1 class="text-3xl text-white">Log in</h1>
+<div class="max-w-xl border-2 mx-auto py-8 bg-black-300 text-center">
+    <h1 class="text-3xl text-black">Log in</h1>
 
-    <form class="mt-6 px-8 space-y-4" method="post" action=".">
+    <form class="form-container" method="post" action=".">
 
        {% csrf_token %}
 
 
         <div>
-            <label class="text-white">E-mail</label><br>
-            <input name="email" type="email" class="w-full py-4 px-6 bg-slate-500 text-white"><br>
+            <label class="text-black">E-mail</label><br>
+            <input name="email" type="email" class="form-input"><br>
         </div>
 
         <div>
-            <label class="text-white">Password</label><br>
-            <input name="password" type="Password" class="w-full py-4 px-6 bg-slate-500 text-white"><br>
+            <label class="text-black">Password</label><br>
+            <input name="password" type="Password" class="form-input"><br>
         </div>
 
 
         <div>
-            <button class="py-4 px-6 bg-sky-600 text-white">Log in</button>
+            <button class="btn-login">Log in</button>
         </div>
 
     </form>

@@ -7,18 +7,21 @@
     <div>
         <label class="text-black">Name</label>
         <br>
-        <input name="name" value="{{ project.name }}" type="text" class="w-full py-4 px-6 bg-slate-500 text-white">
+        <input name="name" value="{{ project.name }}" type="text" class="form-input">
         <br>
     </div>
 
     <div>
         <label class="text-black">Description</label>
         <br>
-        <textarea name="description" class="w-full py-4 px-6 bg-slate-500 text-white">{{ project.description}}</textarea>
+        <textarea name="description" class="form-textarea" rows="10">{{ project.description}}</textarea>
     </div>
 
     <div>
-        <button class="py-4 px-6 bg-sky-600 text-white">Submit</button>
+        <a href="{% url 'project:project' project.id %}" class="btn-cancel">
+            Cancel
+          </a>
+        <button class="btn-submit">Submit</button>
     </div>
 </form>
 {% endblock %}
