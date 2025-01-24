@@ -12,7 +12,6 @@ __pycache__/
 /pizarra/db.sqlite3
 
 # Uploaded media files (correct path, not /pizarra/media)
-media/             
 /pizarra/media/*
 
 # Django migrations (safer to ignore all except __init__.py)
@@ -23,18 +22,10 @@ migrations/
 
 
 # Frontend/Node.js
-                   
 /pizarra/.cache/                          
 /pizarra/dist/                            
 /pizarra/static/css/output.css            
-/pizarra/package-lock.json                
-                      
 
-
-
-# Ignore Python bytecode files
-__pycache__/
-*.pyc
 
 # Ignore Django migrations
 */migrations/*
@@ -47,9 +38,7 @@ Thumbs.db
 *.log
 *.tmp
 
-*.github/*
 
-/pizarra/media/*
 /pizarra/static/CACHE
 /pizarra/static/css
 
