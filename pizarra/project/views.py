@@ -97,14 +97,17 @@ def upload_file(request, project_id):
 @login_required
 def delete_file(request, project_id, pk):
     project = Project.objects.filter(created_by=request.user).get(pk=project_id)
-    print(project.files.all())
     projectfile = project.files.get(pk=pk)
-    projectfile.delete()
+    
+    # Delete the file from storage first
+    if projectfile.attachment:
+        projectfile.attachment.delete(save=False)  # Delete the actual file
+    projectfile.delete()  # Then delete the database record
+    
     return redirect(f'/projects/{project_id}/')
 
 
 ## Notes
-
 @login_required
 def note_detail(request, project_id, pk):
     project = Project.objects.filter(created_by=request.user).get(pk=project_id)

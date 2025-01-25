@@ -34,8 +34,8 @@
             <a href="{% url 'project:projects' %}" class="btn-submit">Projects</a>
             <a href="{% url 'account:logout' %}" class="btn-delete">Log out</a>
             {% else %}
-            <a href="{% url 'account:login' %}" class="py-4 px-8 bg-slate-600 text-white">Log in</a>
-            <a href="{% url 'account:signup' %}" class="py-4 px-8 bg-sky-600 text-white">sign up</a>
+            <a href="{% url 'account:login' %}" class="btn-back">Log in</a>
+            <a href="{% url 'account:signup' %}" class="btn-submit">sign up</a>
             {% endif %}
 
         </div>

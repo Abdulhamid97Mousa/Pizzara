@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  db:
+    build:
+      context: ./pizarra
+      dockerfile: Mysql.Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: pizarradb
+      MYSQL_USER: pizarrauser
+      MYSQL_PASSWORD: pizarrapass
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  web:
+    build:
+      context: ./pizarra
+      dockerfile: App.Dockerfile
+    volumes:
+      - ./pizarra:/app
+      - /app/node_modules  # Keep node_modules in container
+    command: >
+      bash -c "cnpm run dev &
+      python manage.py makemigrations --noinput 
+      && python manage.py migrate 
+      && python manage.py runserver 0.0.0.0:8000"
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: pizarradb
+      MYSQL_USER: pizarrauser
+      MYSQL_PASSWORD: pizarrapass
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mysql_data: 
