@@ -8,6 +8,7 @@ RUN apk update && apk add \
     musl-dev \
     bash \
     mariadb-dev \
+    mariadb-connector-c-dev \ 
     python3-dev \
     nodejs \
     npm \
@@ -20,14 +21,17 @@ RUN npm install -g cnpm --registry=https://registry.npmmirror.com
 COPY package*.json ./
 
 # Install dependencies using cnpm
-RUN cnpm install &&  rm -rf App.Dockerfile && rm -rf Mysql.Dockerfile
+RUN cnpm install
 
 # Install Python dependencies
 COPY requirements.txt .
+
 RUN pip3 install -r requirements.txt --no-cache-dir
 
-# Build Tailwind CSS
 COPY . .
-RUN cnpm run build
+
+RUN cnpm run build && \
+    rm -rf Docker && \
+    rm -f db.sqlite3
 
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"] 
