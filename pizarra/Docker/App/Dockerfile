@@ -31,4 +31,10 @@ RUN pip3 install -r requirements.txt --no-cache-dir
 
 COPY . .
 
+# Build Tailwind CSS first
+RUN cnpm run build
+
+# Then collect static files
+RUN python3 manage.py collectstatic --noinput
+
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"] 
