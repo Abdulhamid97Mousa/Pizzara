@@ -93,7 +93,11 @@ WSGI_APPLICATION = 'pizarra.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('INTERNAL_DATABASE_URL'))
+    'default': dj_database_url.config(
+        default=os.getenv('EXTERNAL_DATABASE_URL'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 # DATABASES = {
@@ -170,8 +174,7 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
 # Correct CSRF configuration with fallback
-# CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED_ORIGINS'), "https://*.onrender.com", "http://127.0.0.1:8000"]
-# CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED_ORIGINS'), "https://*.onrender.com", "http://127.0.0.1:8000"]
+CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED_ORIGINS'), "https://*.onrender.com", "http://127.0.0.1:8000"]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
