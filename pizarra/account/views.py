@@ -3,7 +3,9 @@ from .models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as django_logout
+from django.views.decorators.csrf import csrf_protect
 
+@csrf_protect
 def login(request):
     if request.method == 'POST':
         email = request.POST.get('email','')
@@ -19,7 +21,7 @@ def login(request):
                 
     return render(request, 'account/login.html')
 
-# Create your views here.
+@csrf_protect
 def signup(request):
     if request.method == 'POST':
         name = request.POST.get('name','')
@@ -34,6 +36,7 @@ def signup(request):
         
     return render(request, 'account/signup.html')
 
+@csrf_protect
 @login_required
 def logout(request):
     django_logout(request)
