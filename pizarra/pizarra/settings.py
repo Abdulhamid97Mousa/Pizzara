@@ -166,7 +166,9 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
 # Correct CSRF configuration with fallback
-CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS')
+CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED_ORIGINS'), "https://*.onrender.com", "http://127.0.0.1:8000"]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 COMPRESS_ENABLED = True
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter']
