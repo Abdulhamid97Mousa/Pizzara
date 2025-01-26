@@ -7,6 +7,7 @@ __pycache__/
 *.pyo
 *.pyd
 
+.env
 # Django
 # Local SQLite database (correct path based on your ls -la)
 /pizarra/db.sqlite3
