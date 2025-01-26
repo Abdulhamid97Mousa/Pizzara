@@ -7,11 +7,12 @@ RUN apk update && apk add \
     gcc \
     musl-dev \
     bash \
-    mariadb-dev \
-    mariadb-connector-c-dev \ 
+    postgresql-dev \
+    mariadb-connector-c-dev \
     python3-dev \
     nodejs \
     npm \
+    pkgconfig \
     && rm -rf /var/cache/apk/*
 
 # Install cnpm with China registry
@@ -29,9 +30,5 @@ COPY requirements.txt .
 RUN pip3 install -r requirements.txt --no-cache-dir
 
 COPY . .
-
-RUN cnpm run build && \
-    rm -rf Docker && \
-    rm -f db.sqlite3
 
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"] 
